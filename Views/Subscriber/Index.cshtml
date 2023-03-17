@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Subscriber_File>;
+@{
+
+}
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th class="column5">م</th>
+                            <th class="column5"> رقم الهويه</th>
+                            <th class="column5">الاسم</th>
+                            <th class="column5">المدينه</th>
+                            <th class="column5">الحى</th>
+                            <th class="column5">الجوال</th>
+                            <th class="column5">عدد الاشتراكات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @{int i = 1;}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="column5"> @i </td>
+                                <td class="column5"> @item.Subscriber_File_Id</td>
+                                <td class="column5">@item.Subscriber_File_Name</td>
+                                <td class="column5">@item.Subscriber_File_City</td>
+                                <td class="column5">@item.Subscriber_File_Area</td>
+                                <td class="column5">@item.Subscriber_File_Mobile</td>
+                                <td class="column5">@item.Subscription.Count()</td>
+                            </tr>
+
+                            i++;
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    main {
+        margin-top: 0 !important;
+    }
+
+
+    .container {
+        width: 12000px !important;
+        margin-right: 237px
+    }
+
+    th, td{
+        text-align: center !important;
+    }
+
+</style>
+

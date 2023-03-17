@@ -1,0 +1,70 @@
+﻿@using Water_Bill.Models
+@model IEnumerable<Invoices>;
+@{
+
+}
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th class="column5">م</th>
+                            <th class="column5"> رقم الفاتوره</th>
+                            <th class="column5">رقم الاشتراك</th>
+                            <th class="column5"> الاسم</th>
+                            <th class="column5"> تاريخ الفاتوره</th>
+                            <th class="column5"> الإستهلاك السابقه</th>
+                            <th class="column5">الاستهلاك الحاليه</th>
+                            <th class="column5"> كميه الاستهلاك</th>
+                            <th class="column5">مجموع الفاتوره </th>
+                            <th class="column5"> إجمالى الفاتوره </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @{int i = 1;}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="column5">@i</td>
+                                <td class="column5">@item.Invoices_No</td>
+                                <td class="column5">@item.Invoices_Subscription_NoId</td>
+                                <td class="column5">@item.Invoices_Subscriber_No.Subscriber_File_Name</td>
+                                <td class="column5">@item.Invoices_Date.ToString("dd/MM/yyyy")</td>
+                                <td class="column5">@item.Invoices_Previous_Consumption_Amount</td>
+                                <td class="column5">@item.Invoices_Current_Consumption_Amount</td>
+                                <td class="column5">@item.Invoices_Amount_Consumption</td>
+                                <td class="column5">@item.Invoices_Total_Invoice</td>
+                                <td class="column5">@item.Invoices_Total_Bill</td>
+
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    main {
+        margin-top: 0 !important;
+    }
+
+
+    .container {
+        width: 12000px !important;
+        margin-right: 237px
+    }
+
+    th, td{
+        text-align: center !important;
+    }
+
+</style>
+

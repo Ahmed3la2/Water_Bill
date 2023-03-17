@@ -1,0 +1,108 @@
+﻿@using Water_Bill.ViewModel
+@model SubscribtionVM;
+@{
+
+}
+<form asp-action="Create" class="m-5">
+<h2> تحديث بينات أشتراك </h2>
+    <div class="row">
+        <div class="col-sm">
+            <div class="form-group">
+                <label>رقم الجوال</label>
+                <input type="text" class="form-control" asp-for="Subscriber_File_Mobile" id="mob" readonly>
+                <span asp-validation-for="Subscriber_File_Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>عدد الوحدات</label>
+                <input type="text" class="form-control" asp-for="Subscription_File_Unit_No">
+                <span asp-validation-for="Subscription_File_Unit_No" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>نوع العقار</label>
+                <select class="form-control" asp-for="Subscription_File_Rreal_Estate_Types_CodeID" asp-items="ViewBag.Estate">
+                </select>
+            </div>
+            <div class="form-group">
+                <label>هل يوجد صرف صحى</label>
+                <select asp-for="Subscription_File_Is_There_Sanitation" class="form-control">
+                    <option value=true>
+                        نعم
+                    </option>
+                    <option value=false>
+                        لا
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm">
+            <div class="col-sm">
+                <div class="form-group">
+                    <label>رقم الاشتراك </label>
+                    <input type="text" class="form-control" asp-for="Subscription_File_No" value="@ViewBag.NoOfSubcribtion" readonly>
+                    <span asp-validation-for="Subscription_File_No" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>رقم الهويه </label>
+                    <input type="text" class="form-control" asp-for="Subscription_File_Subscriber_CodeId" id="mob_num">
+                    <span asp-validation-for="Subscription_File_Subscriber_CodeId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">الاسم</label>
+                    <input type="text" class="form-control" asp-for="Subscriber_File_Name" id="name" readonly>
+                    <span class="text-danger" asp-validation-for="Subscriber_File_Name"></span>
+                </div>
+                <div class="form-group">
+                    <label>المدينه</label>
+                    <input type="text" class="form-control" asp-for="Subscriber_File_City" id="city" readonly>
+                    <span asp-validation-for="Subscriber_File_City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label>الحى</label>
+                    <input type="text" class="form-control" asp-for="Subscriber_File_Area" id="area" readonly>
+                    <span class="text-danger" asp-validation-for="Subscriber_File_Area"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">حفظ</button>
+    <button class="btn btn-danger">انهاء</button>
+</form>
+
+<style>
+  .container{
+         max-width: 849px;
+     }
+</style>
+
+@section scripts{
+<script>
+    $("#mob_num").on("keyup", function() {
+       if(this.value.length == 10) {
+           var url = "@Url.Action("getSubscriber")";
+           $.ajax(`${url}?suscode=${this.value}`,
+           {
+               type: 'GET',
+               dataType: 'json',
+               success: function (data,status,xhr) {
+                   console.log(data)
+                   $("#name").val(data.subscriber_File_Name);
+                   $("#city").val(data.subscriber_File_City);
+                   $("#mob").val(data.subscriber_File_Mobile);
+                   $("#area").val(data.subscriber_File_Area);
+               },
+               error: function (jqXhr, textStatus, errorMessage) {
+
+               }
+           });
+       }  else{
+               $("#name").val("");
+               $("#city").val("");
+               $("#mob").val ("");
+               $("#area").val("");
+       }
+    });
+</script>
+}

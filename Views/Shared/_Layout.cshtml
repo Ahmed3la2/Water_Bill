@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - water_bill</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">water_bill</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </li>
+            </ul>
+            </div>
+            </div>
+            </nav>*@
+        <div class="main-menu">
+            <ul>
+                <section class="home">
+                    <a asp-controller="RrealEstate" asp-action="create">
+                <li class="menu-item">تحديث بينات نوع العقار</li>
+                </a>
+
+                <a asp-controller="Subscriber" asp-action="create">
+                <li class="menu-item">تحديث بينات المشترك</li>
+                </a>
+
+                <a asp-controller="Subscribtion" asp-action="Create">
+                <li class="menu-item">تحديث بينات الاشتراك</li>
+                </a>  
+                
+                <a asp-controller="Invoices" asp-action="Create">
+                <li class="menu-item">تسجيل الفاتوره</li>
+                </a>
+                <a  asp-controller="Subscriber" asp-action="Index">
+                <li class="menu-item">تقرير عن المشتركين</li>
+                </a>   
+                <a asp-controller="Subscribtion" asp-action="Index">
+                   <li class="menu-item">تقرير عن الاشتراك</li>
+                </a> 
+                <a asp-controller="Invoices" asp-action="Index">
+                     <li class="menu-item">تقرير الفواتير</li>
+                </a>
+                            
+                </section>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+<style>
+    *, body {
+        margin: 0;
+        padding: 0;
+        text-align: right
+    }
+
+    html {
+        direction: ltr;
+        font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
+        font-size: 19px;
+    }
+
+    body {
+        background-color: #ebebeb;
+        font-family: 'Fira Sans', sans-serif;
+    }
+
+    .main-menu {
+        background-color: #fff;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0px 0px 20px #d4d4d4;
+        width: 70px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: #f3f3f3;
+        width: 250px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        white-space: nowrap;
+        transition: .3s ease;
+    }
+
+        .main-menu .menu-item {
+            padding: 20px;
+        }
+
+            .main-menu .menu-item:hover {
+                background-color: #d6d6d6;
+                cursor: pointer;
+            }
+
+            .main-menu .menu-item .fa {
+                color: gray;
+                width: 40px;
+                font-size: 25px;
+                padding: 10px;
+            }
+
+            .main-menu .menu-item:hover > .fa {
+                color: #1d0daa;
+            }
+
+    section.home {
+        background-color: #f3f3f3;
+    }
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #bbbbbb;
+        border-radius: 10px;
+    }
+
+
+</style>
+
