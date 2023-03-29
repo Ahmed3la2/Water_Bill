@@ -1,59 +1,63 @@
 ﻿@model IEnumerable<Subscription_File>;
 @{
-
+    ViewBag.Title = "كشف الإشتراكات";
 }
-
-<div class="limiter">
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100">
-                <table>
-                    <thead>
-                        <tr class="table100-head">
-                            <th class="column5">م</th>
-                            <th class="column5"> رقم الاشتراك</th>
-                            <th class="column5">رقم المشترك</th>
-                            <th class="column5"> الاسم</th>
-                            <th class="column5"> رقم الجوال</th>
-                            <th class="column5">نوع العقار</th>
-                            <th class="column5">عدد الوحدات</th>
-                            <th class="column5">هل يوجد صرف صحى </th>
-                            <th class="column5"> اخر قراءه للعداد </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        @{int i = 1;}
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td class="column5">@i</td>
-                                <td class="column5">@item.Subscription_File_No</td>
-                                <td class="column5">@item.Subscription_File_Subscriber_CodeId</td>
-                                <td class="column5">@item.Subscription_File_Subscriber_Code.Subscriber_File_Name</td>
-                                <td class="column5">@item.Subscription_File_Subscriber_Code.Subscriber_File_Mobile</td>
-                                <td class="column5">@item.Subscription_File_Rreal_Estate_Types_Code.Rreal_Estate_Types_Name</td>
-                                <td class="column5">@item.Subscription_File_Unit_No</td>
-                                <td class="column5">
-                                    @if(item.Subscription_File_Is_There_Sanitation == true){
-                                        @Html.DisplayName("لا")
-                                    }
-                                    else
-                                    {
-                                        @Html.DisplayName("لا")
-                                    }
-                                </td>
-                                <td class="column6">@item.Subscription_File_Last_Reading_Meter</td>
-                            </tr>
-                            i++;
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<div class="grid-margin">
+    <a type="button" class="btn btn-success btn-icon-text" asp-controller="Subscribtion" asp-action="Create">
+        إضافه اشتراك
+    </a>
 </div>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>م</th>
+            <th> رقم الاشتراك</th>
+            <th>رقم المشترك</th>
+            <th> الاسم</th>
+            <th> رقم الجوال</th>
+            <th>نوع العقار</th>
+            <th>عدد الوحدات</th>
+            <th>هل يوجد صرف صحى </th>
+            <th> اخر قراءه للعداد </th>
+            <th>  تعديل </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @{
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@i</td>
+                <td>@item.Subscription_File_No</td>
+                <td>@item.Subscription_File_Subscriber_CodeId</td>
+                <td>@item.Subscription_File_Subscriber_Code.Subscriber_File_Name</td>
+                <td>@item.Subscription_File_Subscriber_Code.Subscriber_File_Mobile</td>
+                <td>@item.Subscription_File_Rreal_Estate_Types_Code.Rreal_Estate_Types_Name</td>
+                <td>@item.Subscription_File_Unit_No</td>
+                <td>
+                    @if (item.Subscription_File_Is_There_Sanitation == true)
+                    {
+                        @Html.DisplayName("لا")
+                    }
+                    else
+                    {
+                        @Html.DisplayName("لا")
+                    }
+                </td>
+                <td>@item.Subscription_File_Last_Reading_Meter</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Subscription_File_No" class="text-decoration-none"> <i class=" icon-pencil text-primary"></i></a>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
 
 <style>
     main {
@@ -66,7 +70,7 @@
         margin-right: 237px
     }
 
-    th, td{
+    th, td {
         text-align: center !important;
     }
 

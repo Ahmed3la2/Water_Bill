@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Rreal_Estate_Types>;
+@{
+   ViewBag.Title = "كشف المشتركين ";
+}
+<div class="grid-margin">
+    <a type="button" class="btn btn-success btn-icon-text" asp-controller="RrealEstate" asp-action="Create">
+        إضافه عقار
+    </a>
+</div>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>م</th>
+            <th> رمز العقار </th>
+            <th> وضف العقار</th>
+            <th> تعديل</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @{
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @i </td>
+                <td> @item.Rreal_Estate_Types_Code</td>
+                <td>@item.Rreal_Estate_Types_Name</td>
+                <td>
+                    <a asp-action="Edit"asp-route-id="@item.Rreal_Estate_Types_Code"  class="text-decoration-none"> <i class=" icon-pencil text-primary"></i></a>
+                </td>
+            </tr>
+
+            i++;
+        }
+
+
+    </tbody>
+</table>
+
+
+<style>
+    main {
+        margin-top: 0 !important;
+    }
+
+
+    .container {
+        width: 12000px !important;
+        margin-right: 237px
+    }
+
+    th, td {
+        text-align: center !important;
+    }
+
+</style>
+

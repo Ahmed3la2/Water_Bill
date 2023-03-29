@@ -1,70 +1,99 @@
-﻿@using Water_Bill.Models
-@model IEnumerable<Invoices>;
+﻿@using Water_Bill.Helpers
+@using Water_Bill.Models
+@model PageList<Invoices>;
 @{
+    ViewBag.Title = "كشف الفواتير";
+    var pagaNum = Convert.ToInt32(Context.Request.Query["pageNum"]) == 0 ? 1 : Convert.ToInt32(Context.Request.Query["pageNum"]);
 
 }
-
-<div class="limiter">
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100">
-                <table>
-                    <thead>
-                        <tr class="table100-head">
-                            <th class="column5">م</th>
-                            <th class="column5"> رقم الفاتوره</th>
-                            <th class="column5">رقم الاشتراك</th>
-                            <th class="column5"> الاسم</th>
-                            <th class="column5"> تاريخ الفاتوره</th>
-                            <th class="column5"> الإستهلاك السابقه</th>
-                            <th class="column5">الاستهلاك الحاليه</th>
-                            <th class="column5"> كميه الاستهلاك</th>
-                            <th class="column5">مجموع الفاتوره </th>
-                            <th class="column5"> إجمالى الفاتوره </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        @{int i = 1;}
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td class="column5">@i</td>
-                                <td class="column5">@item.Invoices_No</td>
-                                <td class="column5">@item.Invoices_Subscription_NoId</td>
-                                <td class="column5">@item.Invoices_Subscriber_No.Subscriber_File_Name</td>
-                                <td class="column5">@item.Invoices_Date.ToString("dd/MM/yyyy")</td>
-                                <td class="column5">@item.Invoices_Previous_Consumption_Amount</td>
-                                <td class="column5">@item.Invoices_Current_Consumption_Amount</td>
-                                <td class="column5">@item.Invoices_Amount_Consumption</td>
-                                <td class="column5">@item.Invoices_Total_Invoice</td>
-                                <td class="column5">@item.Invoices_Total_Bill</td>
-
-                            </tr>
-                            i++;
-                        }
-                    </tbody>
-                </table>
+<div class="grid-margin">
+    <div class="row">
+        <div class="col-12 col-md-2">
+            <a type="button" class="btn btn-success btn-icon-text" asp-controller="Invoices" asp-action="Create">
+                إضافه فاتوره
+            </a>
+        </div>
+        <div class="col-12 col-md-10">
+            <div class="form-group seacrh">
+                <form style="width:100%" asp-action="Index" asp-controller="Invoices">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name=search value="@ViewBag.searchItem">
+                        <div class="input-group-append">
+                            <button class="btn btn-sm btn-primary" type="submit" name="searchItem">Search</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
+
 </div>
+<table class="table table-dark">
+    <thead>
+        <tr class="text-center">
+            <th> م </th>
+            <th> رقم الفاتوره </th>
+            <th> رقم الاشتراك </th>
+            <th> الاسم </th>
+            <th> تاريخ الفاتور </th>
+            <th> الإستهلاك السابقه</th>
+            <th> الإستهلاك الحاليه</th>
+            <th> الإستهلاك </th>
+            <th> مجموع الفاتوره </th>
+            <th class="text-danger"> إجمالى الفاتوره </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>@i</td>
+                <td>@item.Invoices_No</td>
+                <td>@item.Invoices_Subscription_NoId</td>
+                <td>@item.Invoices_Subscriber_No.Subscriber_File_Name</td>
+                <td>@item.Invoices_Date.ToString("dd/MM/yyyy")</td>
+                <td>@item.Invoices_Previous_Consumption_Amount</td>
+                <td>@item.Invoices_Current_Consumption_Amount</td>
+                <td>@item.Invoices_Amount_Consumption</td>
+                <td>@item.Invoices_Total_Invoice</td>
+                <td class="text-danger">@item.Invoices_Total_Bill</td>
+            </tr>
+            i++;
+        }
 
+    </tbody>
+</table>
+<div class="row mt-4">
+    <div class="col-12 col-md-6">
+
+        <nav class="ml-auto" style="direction:ltr">
+            <form asp-action="Index">
+                <ul class="pagination separated pagination-info" style="justify-content: right;">
+                    <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-left"></i></a></li>
+                    @for (i = 1; i <= Model.TotalPage; i++)
+                    {
+                        <li class="page-item  @(i == @pagaNum? "active":"")"> <a asp-route-pageNum="@i" asp-route-search="@ViewBag.searchItem" class="page-link">@i</a></li>
+                                  
+                    }
+                    <li class="page-item"><a href="#" class="page-link"><i class="icon-arrow-right"></i></a></li>
+
+                </ul>
+            </form>
+        </nav>
+    </div>
+</div>
 <style>
-    main {
-        margin-top: 0 !important;
-    }
-
-
-    .container {
-        width: 12000px !important;
-        margin-right: 237px
-    }
-
-    th, td{
-        text-align: center !important;
+    .seacrh {
+        direction: ltr;
     }
 
 </style>
+
+
+
+
 

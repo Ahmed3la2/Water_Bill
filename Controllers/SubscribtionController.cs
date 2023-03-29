@@ -19,7 +19,11 @@ namespace water_bill.Controllers
 
         public IActionResult Index()
         {
-            var subscription = _context.subscription.Include(n => n.Subscription_File_Subscriber_Code).Include(r=> r.Subscription_File_Rreal_Estate_Types_Code).ToList();
+            var subscription = _context.subscription
+                .Include(n => n.Subscription_File_Subscriber_Code)
+                .Include(r=> r.Subscription_File_Rreal_Estate_Types_Code)
+                .ToList();
+            ViewBag.IsCSubscribtion = true;
             return View(subscription);
         }
 
@@ -27,8 +31,10 @@ namespace water_bill.Controllers
         {
             var estate = _context.real_Estate_Type.ToList();
             ViewBag.Estate = new SelectList(estate, "Rreal_Estate_Types_Code", "Rreal_Estate_Types_Name");
-
-            int? LastNumber = _context.subscription.OrderByDescending(n => n.Number).Select(n => n.Number).FirstOrDefault();
+            ViewBag.IsCSubscribtionCreate = true;
+            int? LastNumber = _context.subscription.OrderByDescending(n => n.Number)
+                .Select(n => n.Number)
+                .FirstOrDefault();
             string currentYear = DateTime.Now.Year.ToString().Substring(DateTime.Now.Year.ToString().Length - 2);
             string CurrentMonth = DateTime.Now.Month.ToString();
 
@@ -85,6 +91,54 @@ namespace water_bill.Controllers
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(string id)
+        {
+            var subscrbtion = _context.subscription.Include(i => i.Subscription_File_Rreal_Estate_Types_Code).Include(i=>i.Subscription_File_Subscriber_Code).FirstOrDefault(I => I.Subscription_File_No == id);
+
+            SubscribtionVM subscribtionVM = new SubscribtionVM
+            {
+                Subscription_File_No = subscrbtion.Subscription_File_No,
+                Subscriber_File_Area = subscrbtion.Subscription_File_Subscriber_Code.Subscriber_File_Area,
+                Subscriber_File_City = subscrbtion.Subscription_File_Subscriber_Code.Subscriber_File_City,
+                Subscriber_File_Mobile = subscrbtion.Subscription_File_Subscriber_Code.Subscriber_File_Mobile,
+                Subscriber_File_Name = subscrbtion.Subscription_File_Subscriber_Code.Subscriber_File_Name,
+                Subscription_File_Is_There_Sanitation = subscrbtion.Subscription_File_Is_There_Sanitation,
+                Subscription_File_Rreal_Estate_Types_CodeID = subscrbtion.Subscription_File_Rreal_Estate_Types_CodeID,
+                Subscription_File_Subscriber_CodeId = subscrbtion.Subscription_File_Subscriber_CodeId,
+                Subscription_File_Unit_No = subscrbtion.Subscription_File_Unit_No
+            };
+            var estate = _context.real_Estate_Type.ToList();
+            ViewBag.Estate = new SelectList(estate, "Rreal_Estate_Types_Code", "Rreal_Estate_Types_Name");
+
+            return View(subscribtionVM);
+        }
+        [HttpPost]
+        public IActionResult Edit(SubscribtionVM subscriptionVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                var estate = _context.real_Estate_Type.ToList();
+                ViewBag.Estate = new SelectList(estate, "Rreal_Estate_Types_Code", "Rreal_Estate_Types_Name");
+
+                return View(subscriptionVM);
+            }
+            var subscrbtion = _context.subscription.FirstOrDefault(I => I.Subscription_File_No == subscriptionVM.Subscription_File_No);
+
+            Subscription_File subscriptiondto = new Subscription_File
+            {
+                Subscription_File_Is_There_Sanitation = subscriptionVM.Subscription_File_Is_There_Sanitation,
+                Subscription_File_No = subscriptionVM.Subscription_File_No,
+                Subscription_File_Unit_No = subscriptionVM.Subscription_File_Unit_No,
+                Subscription_File_Rreal_Estate_Types_CodeID = subscriptionVM.Subscription_File_Rreal_Estate_Types_CodeID,
+                Subscription_File_Subscriber_CodeId = subscriptionVM.Subscription_File_Subscriber_CodeId,
+            };
+
+            _context.subscription.Update(subscriptiondto);
+            _context.SaveChanges();
+
+            return View(subscrbtion);
         }
 
 

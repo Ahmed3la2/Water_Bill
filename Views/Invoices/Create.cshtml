@@ -1,49 +1,44 @@
 ﻿@using Water_Bill.ViewModel
 @model InvoicesVM;
 @{
+    ViewBag.Title = "إضافه فاتوره ";
 
 }
-<form asp-action="Create" class="m-5">
-<h2> تسجيل الفاتوره</h2>
+<form asp-action="Create" class="m-1">
     <div class="row">
         <div class="col-12 col-md-4">
-
             <div class="form-group">
-                <label> عدد الوحدات</label>
-                <input type="text" class="form-control" asp-for="Unit_No" id="unit_no" readonly>
-                <input type="text" class="form-control" asp-for="Unit_No" id="rreal" hidden>
-                <span asp-validation-for="Unit_No" class="text-danger"></span>
-            </div>   
+                <label>رقم الفاتوره</label>
+                <input type="text" class="form-control" asp-for="Invoices_No" readonly value="@ViewBag.NoOfInvoice">
+                <span asp-validation-for="Invoices_No" class="text-danger"></span>
+            </div>
             <div class="form-group">
-                <label>القراءه السابقه</label>
-                <input type="text" class="form-control" asp-for="Invoices_Previous_Consumption_Amount" id="prev" readonly value="0">
-                <span asp-validation-for="Invoices_Previous_Consumption_Amount" class="text-danger"></span>
+                <label>من تاريخ</label>
+                <input type="date" class="form-control" asp-for="Invoices_From">
+                <span asp-validation-for="Invoices_From" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label > قيمه رسوم الخدمه</label>
-                <input class="form-control" asp-for="Invoices_Service_Fee" id="fee" min="0" oninput="validity.valid||(value='0')"; value="0" onkeypress="return isNumberKey(event)" type="text" onClick="this.select();">
-                <span asp-validation-for="Invoices_Service_Fee" class="text-danger"></span>
+                <label> الى تاريخ </label>
+                <input type="date" class="form-control" asp-for="Invoices_To" id="to">
+                <span asp-validation-for="Invoices_To" class="text-danger"></span>
             </div>
-                 
             <div class="form-group">
-                <label> نسبه الضريبه </label>
-                <input  class="form-control" asp-for="Invoices_Tax_Rate" id="tax" min="0" oninput="validity.valid||(value='0')";  value="0" onkeypress="return isNumberKey(event)" type="text" onClick="this.select();">
-                <span asp-validation-for="Invoices_Tax_Rate" class="text-danger"></span>
+                <label>تاريخ الفاتوره</label>
+                <input type="date" class="form-control" asp-for="Invoices_Date">
+                <span asp-validation-for="Invoices_Date" class="text-danger"></span>
             </div>
-
             <div class="form-group">
-                <label>القراءه الحاليه</label>
-                <input  class="form-control" asp-for="Invoices_Current_Consumption_Amount" id="curr"    min="1" oninput="validity.valid||(value='0')"; value="0" onkeypress="return isNumberKey(event)" type="text" onClick="this.select();"> 
-                <span asp-validation-for="Invoices_Current_Consumption_Amount" class="text-danger"></span>
+                <label>قيمه استهلاك المياه</label>
+                <input type="text" class="form-control" asp-for="Invoices_Consumption_Value" id="consum" readonly>
+                <span asp-validation-for="Invoices_Consumption_Value" class="text-danger"></span>
             </div>
-              <div class="form-group">
-                <label> اجمالى الفاتوره</label>
-                <input type="text" class="form-control text-danger" asp-for="Invoices_Total_Bill" id="Total_Bill" readonly value="0">
-                <span asp-validation-for="Invoices_Total_Bill" class="text-danger"></span>
+            <div class="form-group">
+                <label>قيمه استهلاك الصرف الصحى</label>
+                <input type="text" class="form-control" asp-for="Invoices_Wastewater_Consumption_Value" id="san_val" readonly data-isSan="">
+                <span asp-validation-for="Invoices_Wastewater_Consumption_Value" class="text-danger"></span>
             </div>
         </div>
-
         <div class="col-12 col-md-4">
             <div class="form-group">
                 <label>رقم الاشتراك</label>
@@ -70,7 +65,7 @@
                 <input type="text" class="form-control" asp-for="Invoices_Amount_Consumption" id="amount_consum" readonly value="0">
                 <span asp-validation-for="Invoices_Amount_Consumption" class="text-danger"></span>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label> قيمه الفاتوره </label>
                 <input type="text" class="form-control" asp-for="Invoices_Total_Invoice" readonly id="Invoices_Total_Invoice" value="0">
                 <span asp-validation-for="Invoices_Total_Invoice" class="text-danger"></span>
@@ -79,57 +74,70 @@
 
         <div class="col-12 col-md-4">
             <div class="form-group">
-                <label>رقم الفاتوره</label>
-                <input type="text" class="form-control" asp-for="Invoices_No" readonly value="@ViewBag.NoOfInvoice">
-                <span asp-validation-for="Invoices_No" class="text-danger"></span>
+                <label> عدد الوحدات</label>
+                <input type="text" class="form-control" asp-for="Unit_No" id="unit_no" readonly>
+                <input type="text" class="form-control" asp-for="Unit_No" id="rreal" hidden>
+                <span asp-validation-for="Unit_No" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>من تاريخ</label>
-                <input type="date" class="form-control" asp-for="Invoices_From">
-                <span asp-validation-for="Invoices_From" class="text-danger"></span>
-            </div>    
-            
+                <label>القراءه السابقه</label>
+                <input type="text" class="form-control" asp-for="Invoices_Previous_Consumption_Amount" id="prev" readonly value="0">
+                <span asp-validation-for="Invoices_Previous_Consumption_Amount" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
-                <label> الى تاريخ </label>
-                <input  type="date" class="form-control" asp-for="Invoices_To" id="to"> 
-                <span asp-validation-for="Invoices_To" class="text-danger"></span>
+                <label> قيمه رسوم الخدمه</label>
+                <input class="form-control" asp-for="Invoices_Service_Fee" id="fee" min="0" oninput="validity.valid||(value='0')" ; value="0" onkeypress="return isNumberKey(event)" type="text" onClick="this.select();">
+                <span asp-validation-for="Invoices_Service_Fee" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>  نسبه الضريبه  <span class="text-danger"> % </span> </label>
+                <input class="form-control" asp-for="Invoices_Tax_Rate" id="tax" min="0" oninput="validity.valid||(value='0')" ; value="0" onkeypress="return isNumberKey(event)" type="text" onClick="this.select();" placeholder="The Number in %">
+                <span asp-validation-for="Invoices_Tax_Rate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>القراءه الحاليه</label>
+                <input class="form-control" asp-for="Invoices_Current_Consumption_Amount" id="curr" min="1" oninput="validity.valid||(value='0')" ; value="0" onkeypress="return isNumberKey(event)" type="text" onClick="this.select();">
+                <span asp-validation-for="Invoices_Current_Consumption_Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label >تاريخ الفاتوره</label>
-                <input type="date" class="form-control" asp-for="Invoices_Date">
-                <span asp-validation-for="Invoices_Date" class="text-danger"></span>
-            </div>  
-            <div class="form-group">
-                <label>قيمه استهلاك المياه</label>
-                <input type="text" class="form-control" asp-for="Invoices_Consumption_Value" id="consum" readonly>
-                <span asp-validation-for="Invoices_Consumption_Value" class="text-danger"></span>
+                <label> اجمالى الفاتوره <span class="text-danger"> $</span> </label>
+                <input type="text" class="form-control text-danger" asp-for="Invoices_Total_Bill" id="Total_Bill" readonly value="0">
+                <span asp-validation-for="Invoices_Total_Bill" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label>قيمه استهلاك الصرف الصحى</label>
-                <input type="text" class="form-control" asp-for="Invoices_Wastewater_Consumption_Value" id="san_val" readonly data-isSan="">
-                <span asp-validation-for="Invoices_Wastewater_Consumption_Value" class="text-danger"></span>
-            </div>    
-            
-           
-          
         </div>
 
 
+
+
     </div>
-    <button type="submit" class="btn btn-primary">حفظ</button>
-    <button class="btn btn-danger">انهاء</button>
 
-
-    <input asp-for="Invoices_Subscriber_NoId" hidden/>
+    <button type="submit" class="btn btn-success">حفظ</button>
+    <button class="btn btn-danger" asp-action="Index"> انهاء</button>
+    <input asp-for="Invoices_Subscriber_NoId" hidden />
 </form>
 
 <style>
-     .container{
-         max-width: 849px;
-     }
+    .container {
+        max-width: 849px;
+    }
+
+    label {
+        font-size: 19px !important;
+    }
+
+    input {
+        outline: solid green 1px;
+        font-weight: bold !important;
+        font-size: 19px !important;
+    }
 </style>
 
 @section scripts
 {
-   <script src="~/js/invoice.js"></script>
+<script src="~/js/invoice.js"></script>
+       
+                                
 }

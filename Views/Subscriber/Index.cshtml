@@ -1,50 +1,54 @@
 ﻿@model IEnumerable<Subscriber_File>;
 @{
-
+    ViewBag.Title = "كشف المشتركين ";
 }
-
-<div class="limiter">
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100">
-                <table>
-                    <thead>
-                        <tr class="table100-head">
-                            <th class="column5">م</th>
-                            <th class="column5"> رقم الهويه</th>
-                            <th class="column5">الاسم</th>
-                            <th class="column5">المدينه</th>
-                            <th class="column5">الحى</th>
-                            <th class="column5">الجوال</th>
-                            <th class="column5">عدد الاشتراكات</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        @{int i = 1;}
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td class="column5"> @i </td>
-                                <td class="column5"> @item.Subscriber_File_Id</td>
-                                <td class="column5">@item.Subscriber_File_Name</td>
-                                <td class="column5">@item.Subscriber_File_City</td>
-                                <td class="column5">@item.Subscriber_File_Area</td>
-                                <td class="column5">@item.Subscriber_File_Mobile</td>
-                                <td class="column5">@item.Subscription.Count()</td>
-                            </tr>
-
-                            i++;
-                        }
-
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<div class="grid-margin">
+    <a type="button" class="btn btn-success btn-icon-text" asp-controller="Subscriber" asp-action="Create">
+        إضافه مشترك
+    </a>
 </div>
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th>م</th>
+            <th> رقم الهويه</th>
+            <th>الاسم</th>
+            <th>المدينه</th>
+            <th>الحى</th>
+            <th>الجوال</th>
+            <th>عدد الاشتراكات</th>
+            <th> تعديل</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @{
+            int i = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @i </td>
+                <td> @item.Subscriber_File_Id</td>
+                <td>@item.Subscriber_File_Name</td>
+                <td>@item.Subscriber_File_City</td>
+                <td>@item.Subscriber_File_Area</td>
+                <td>@item.Subscriber_File_Mobile</td>
+                <td>@item.Subscription.Count()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Subscriber_File_Id" class="text-decoration-none"> <i class=" icon-pencil text-primary"></i></a>
+                </td>
+            </tr>
+
+            i++;
+        }
+
+
+    </tbody>
+</table>
+
 
 <style>
     main {
@@ -57,7 +61,7 @@
         margin-right: 237px
     }
 
-    th, td{
+    th, td {
         text-align: center !important;
     }
 

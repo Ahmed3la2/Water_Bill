@@ -8,7 +8,6 @@ C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\bin\Debug\net5.0\Water_Bill.dll
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\bin\Debug\net5.0\Water_Bill.pdb
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\bin\Debug\net5.0\Water_Bill.Views.dll
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\bin\Debug\net5.0\Water_Bill.Views.pdb
-C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\bin\Debug\net5.0\EntityFramework.dll
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\bin\Debug\net5.0\Humanizer.dll
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
@@ -54,12 +53,18 @@ C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Water_Bill.TagHelp
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Water_Bill.RazorCoreGenerate.cache
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Invoices\Create.cshtml.g.cs
+C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Invoices\Index.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\RrealEstate\create.cshtml.g.cs
+C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\RrealEstate\Edit.cshtml.g.cs
+C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\RrealEstate\Index.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Subscriber\Create.cshtml.g.cs
+C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Subscriber\Index.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Subscribtion\Create.cshtml.g.cs
+C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Subscribtion\Index.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Water_Bill.RazorTargetAssemblyInfo.cache
@@ -71,7 +76,5 @@ C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\refint\Water_Bill.
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Water_Bill.pdb
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Water_Bill.genruntimeconfig.cache
 C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\ref\Water_Bill.dll
-C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Invoices\Create.cshtml.g.cs
-C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Subscriber\Index.cshtml.g.cs
-C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Subscribtion\Index.cshtml.g.cs
-C:\Users\ahmed\Desktop\Water_Bill\Water_Bill\obj\Debug\net5.0\Razor\Views\Invoices\Index.cshtml.g.cs
+C:\Users\ahmed\Desktop\Water_Bill\water_bill\obj\Debug\net5.0\Razor\Views\Subscriber\Edit.cshtml.g.cs
+C:\Users\ahmed\Desktop\Water_Bill\water_bill\obj\Debug\net5.0\Razor\Views\Subscribtion\Edit.cshtml.g.cs

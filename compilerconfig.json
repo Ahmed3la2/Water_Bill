@@ -1,0 +1,42 @@
+﻿[
+  {
+    "outputFile": "wwwroot/scss/_dashboard.css",
+    "inputFile": "wwwroot/scss/_dashboard.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/components/_settings-panel.css",
+    "inputFile": "wwwroot/scss/components/_settings-panel.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/light/components/plugin-overrides/_chartist.css",
+    "inputFile": "wwwroot/scss/light/components/plugin-overrides/_chartist.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/light/_variables.css",
+    "inputFile": "wwwroot/scss/light/_variables.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/shared/components/_buttons.css",
+    "inputFile": "wwwroot/scss/shared/components/_buttons.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/shared/landing-screens/_auth.css",
+    "inputFile": "wwwroot/scss/shared/landing-screens/_auth.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/shared/mixins/_animation.css",
+    "inputFile": "wwwroot/scss/shared/mixins/_animation.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/shared/_demo.css",
+    "inputFile": "wwwroot/scss/shared/_demo.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/vertical/_vertical-wrapper.css",
+    "inputFile": "wwwroot/scss/vertical/_vertical-wrapper.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/style.css",
+    "inputFile": "wwwroot/scss/style.scss"
+  }
+]

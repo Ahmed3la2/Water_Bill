@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using water_bill;
+using Water_Bill.Helpers;
 using Water_Bill.Models;
 using Water_Bill.ViewModel;
 
@@ -17,11 +18,36 @@ namespace Water_Bill.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search, int pageNum)
         {
-            var invoices = _context.Invoices.Include(s => s.Invoices_Subscription_No).Include(s=>s.Invoices_Subscriber_No).ToList();
+            ViewBag.IsCInvoice = true;
+            ViewBag.searchItem = search;
 
-            return View(invoices);
+
+            var invoices = _context.Invoices
+                                   .Include(s => s.Invoices_Subscription_No)
+                                   .Include(s => s.Invoices_Subscriber_No)
+                                   .ToList();
+
+            var pages = PageList<Invoices>.GetPage(invoices, pageNum, 8);
+
+            if (search == null)
+            {
+                return View(pages);
+            }
+
+            else
+            {
+                var FilteredInvoices = invoices.Where(i => i.Invoices_No.Contains(search) ||
+                                      i.Invoices_Subscriber_No.Subscriber_File_Name.Contains(search))
+                                      .ToList();
+
+                var pagesWithSearch = PageList<Invoices>.GetPage(FilteredInvoices, pageNum, 5);
+                return View(pagesWithSearch);
+            }
+
+
+          
         }
 
         public IActionResult Create()
@@ -29,7 +55,7 @@ namespace Water_Bill.Controllers
             int? LastNumber = _context.Invoices.OrderByDescending(n => n.Number).Select(n => n.Number).FirstOrDefault();
             string currentYear = DateTime.Now.Year.ToString();
             string CurrentMonth = DateTime.Now.Month.ToString();
-
+            ViewBag.IsCInvoiceCreate = true;
             if (LastNumber == 0)
             {
                 var NumOfSubcribtion = $"{currentYear}-{CurrentMonth}-1";
@@ -97,8 +123,6 @@ namespace Water_Bill.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-
         [HttpGet]
         public JsonResult Get_Amount_Consumption_Value([FromQuery] bool sanitation, [FromQuery] int noOfUnit, [FromQuery] double Amount_Consumption)
         {
@@ -111,7 +135,7 @@ namespace Water_Bill.Controllers
             double Amount_Water_Value = 0;
             double Amount_sanitation_Value = 0;
             int i = 0;
-            do
+            while (i <= slices.Count - 1)
             {
                 if (Amount_Consumption <= slices[0].condition)
                 {
@@ -158,10 +182,8 @@ namespace Water_Bill.Controllers
                     }
                 }
                 if (Amount_Water_Value != 0 || Amount_sanitation_Value != 0) break;
-
                 i++;
-
-            } while (i <= slices.Count() - 1);
+            }
 
             return Json(new
             {
@@ -172,6 +194,29 @@ namespace Water_Bill.Controllers
 
 
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

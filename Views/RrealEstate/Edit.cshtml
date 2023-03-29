@@ -1,0 +1,30 @@
+﻿@model Rreal_Estate_Types;
+@{
+    ViewBag.Title = "تعديل عقار";
+
+}
+
+<form asp-action="Edit" class="m-1">
+    <div class="col-12 col-md-6">
+        <div class="form-group">
+            <label for="exampleInputPassword1">وصف العقار</label>
+            <input type="text" class="form-control" asp-for="Rreal_Estate_Types_Name" value="@ViewBag.name" >
+            <input asp-for="Rreal_Estate_Types_Code" hidden type="text" />
+            <span class="text-danger" asp-validation-for="Rreal_Estate_Types_Name"></span>
+        </div>
+        <button type="submit" class="btn btn-success">حفظ</button>
+        <button class="btn btn-danger" asp-action="Index">انهاء</button>
+    </div>
+</form>
+
+<style>
+    label {
+        font-size: 19px !important;
+    }
+
+    input {
+        outline: solid green 1px;
+        font-weight: bold !important;
+        font-size: 19px !important;
+    }
+</style>

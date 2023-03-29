@@ -1,0 +1,50 @@
+﻿@model Subscriber_File;
+@{
+    ViewBag.Title = "تعديل مشترك ";
+}
+<form asp-action="Edit" class="m-1" >
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <input asp-for="Subscriber_File_Id" hidden />
+            <div class="form-group">
+                <label for="exampleInputPassword1">الاسم</label>
+                <input type="text" class="form-control" asp-for="Subscriber_File_Name">
+                <span class="text-danger" asp-validation-for="Subscriber_File_Name"></span>
+            </div>
+            <div class="form-group">
+                <label>المدينه</label>
+                <input type="text" class="form-control" asp-for="Subscriber_File_City">
+                <span asp-validation-for="Subscriber_File_City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">الحى</label>
+                <input type="text" class="form-control" asp-for="Subscriber_File_Area">
+                <span class="text-danger" asp-validation-for="Subscriber_File_Area"></span>
+            </div>
+            <div class="form-group">
+                <label>الجوال</label>
+                <input type="number" class="form-control" asp-for="Subscriber_File_Mobile" maxlength="11">
+                <span asp-validation-for="Subscriber_File_Mobile" class="text-danger"></span>
+            </div>
+
+        </div>
+
+
+    </div>
+    <button type="submit" class="btn btn-success">حفظ</button>
+    <button class="btn btn-danger"> asp-action="Index"انهاء</button>
+
+</form>
+
+<style>
+    label {
+        font-size: 19px !important;
+    }
+
+    input {
+        outline: solid green 1px;
+        font-weight: bold !important;
+        font-size: 19px !important;
+    }
+
+</style>

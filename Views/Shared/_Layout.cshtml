@@ -4,150 +4,175 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - water_bill</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-</head>
-<body>
-    <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">water_bill</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-            <ul class="navbar-nav flex-grow-1">
-            <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </li>
-            </ul>
-            </div>
-            </div>
-            </nav>*@
-        <div class="main-menu">
-            <ul>
-                <section class="home">
-                    <a asp-controller="RrealEstate" asp-action="create">
-                <li class="menu-item">تحديث بينات نوع العقار</li>
-                </a>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="~/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="~/vendors/css/vendor.bundle.base.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap" rel="stylesheet">
 
-                <a asp-controller="Subscriber" asp-action="create">
-                <li class="menu-item">تحديث بينات المشترك</li>
-                </a>
-
-                <a asp-controller="Subscribtion" asp-action="Create">
-                <li class="menu-item">تحديث بينات الاشتراك</li>
-                </a>  
-                
-                <a asp-controller="Invoices" asp-action="Create">
-                <li class="menu-item">تسجيل الفاتوره</li>
-                </a>
-                <a  asp-controller="Subscriber" asp-action="Index">
-                <li class="menu-item">تقرير عن المشتركين</li>
-                </a>   
-                <a asp-controller="Subscribtion" asp-action="Index">
-                   <li class="menu-item">تقرير عن الاشتراك</li>
-                </a> 
-                <a asp-controller="Invoices" asp-action="Index">
-                     <li class="menu-item">تقرير الفواتير</li>
-                </a>
-                            
-                </section>
-            </ul>
-        </div>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/vendors/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="~/vendors/chartist/chartist.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/images/favicon.png" />
+    <link rel="shortcut icon" href="~/images/logo-light.svg" />
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="navbar-brand-wrapper d-flex align-items-center">
+                <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/in1.jpg"class="logo-dark" />
+                </a>
+                <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo" /></a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+                <h2 class="mb-0 font-weight-medium d-none d-lg-flex">@ViewData["Title"] </h2>
+
+            
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="icon-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+
+
+                    <li class="nav-item nav-category" style="margin:0 auto; font-size:20px">
+                        <a class="nav-link">
+                            <span class="menu-title">الكشوفات </span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(ViewBag.IsCInvoice==true?"activee":"") ">
+                        <a class="nav-link" asp-controller="Invoices" asp-action="Index">
+                            <i class="icon-screen-desktop menu-icon"> </i>
+                            <span class="menu-title">كشف الفواتير</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item "></li>
+
+                    <li class="nav-item @(ViewBag.IsCSubscribtion==true?"activee":"")">
+                        <a class="nav-link" asp-controller="Subscribtion" asp-action="Index">
+                            <i class="icon-screen-desktop menu-icon"></i>
+                            <span class="menu-title">كشف  الاشتراكات</span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item @(ViewBag.Subscriber==true?"activee":"")">
+                        <a class="nav-link" asp-controller="Subscriber" asp-action="Index">
+                            <i class="icon-screen-desktop menu-icon"></i>
+                            <span class="menu-title">كشف  المشتركين</span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(ViewBag.Rreal==true?"activee":"")">
+                        <a class="nav-link" asp-controller="RrealEstate" asp-action="Index">
+                            <i class="icon-screen-desktop menu-icon"></i>
+                            <span class="menu-title">كشف  العقارات</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item"></li>
+                    <li class="nav-item nav-category" style="margin:0 auto; font-size:20px">
+                        <a class="nav-link">
+                            <span class="menu-title">الإضافات </span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(ViewBag.IsCInvoiceCreate==true?"activee":"")">
+                        <a class="nav-link" asp-controller="Invoices" asp-action="Create">
+                            <i class="icon-plus menu-icon"></i>
+                            <span class="menu-title">إضافه فاتوره</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item @(ViewBag.IsCSubscribtionCreate==true?"activee":"")">
+                        <a class="nav-link" asp-controller="Subscribtion" asp-action="Create">
+                            <i class="icon-plus menu-icon"></i>
+                            <span class="menu-title">إضافه إشتراك</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item @(ViewBag.IsCSubscriberCreate==true?"activee":"")">
+                        <a class="nav-link" asp-controller="Subscriber" asp-action="Create">
+                            <i class="icon-plus menu-icon"></i>
+                            <span class="menu-title">إضافه مشترك</span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(ViewBag.AddRreal==true?"activee":"")">
+                        <a class="nav-link" asp-controller="RrealEstate" asp-action="Create">
+                            <i class="icon-plus menu-icon"></i>
+                            <span class="menu-title">إضافه عقار</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/vendors/chart.js/Chart.min.js"></script>
+    <script src="~/vendors/moment/moment.min.js"></script>
+    <script src="~/vendors/daterangepicker/daterangepicker.js"></script>
+    <script src="~/vendors/chartist/chartist.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="~/js/off-canvas.js"></script>
+    <script src="~/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="~/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/dashboard.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
 
 <style>
-    *, body {
-        margin: 0;
-        padding: 0;
-        text-align: right
-    }
-
-    html {
-        direction: ltr;
-        font-family: "Droid Arabic Kufi", "Droid Sans", sans-serif;
-        font-size: 19px;
-    }
 
     body {
-        background-color: #ebebeb;
-        font-family: 'Fira Sans', sans-serif;
+        direction: rtl;
+        text-align: right;
+        font-family: 'Readex Pro', sans-serif;
     }
 
-    .main-menu {
-        background-color: #fff;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        box-shadow: 0px 0px 20px #d4d4d4;
-        width: 70px;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: #f3f3f3;
-        width: 250px;
-        overflow-x: hidden;
-        overflow-y: hidden;
-        white-space: nowrap;
-        transition: .3s ease;
+    .nav-item.activee a i {
+        color: #38ce3c !important;
     }
 
-        .main-menu .menu-item {
-            padding: 20px;
-        }
-
-            .main-menu .menu-item:hover {
-                background-color: #d6d6d6;
-                cursor: pointer;
-            }
-
-            .main-menu .menu-item .fa {
-                color: gray;
-                width: 40px;
-                font-size: 25px;
-                padding: 10px;
-            }
-
-            .main-menu .menu-item:hover > .fa {
-                color: #1d0daa;
-            }
-
-    section.home {
-        background-color: #f3f3f3;
+    .nav-item.activee {
+        background: #282828;
     }
-
-    ::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: transparent !important;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: #bbbbbb;
-        border-radius: 10px;
-    }
-
-
 </style>
 

@@ -17,11 +17,13 @@ namespace water_bill.Controllers
         public IActionResult Index()
         {
             var subscriber = _context.subscriber.Include(s => s.Subscription).ToList();
+            ViewBag.Subscriber = true;
             return View(subscriber);
         }
 
         public IActionResult Create()
         {
+            ViewBag.IsCSubscriberCreate = true;
             return View();
         }
 
@@ -42,6 +44,29 @@ namespace water_bill.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
+
+        public IActionResult Edit(string id)
+        {
+            var subscriber = _context.subscriber.FirstOrDefault(s=> s.Subscriber_File_Id == id);
+            return View(subscriber);
+        }  
+        
+        [HttpPost]
+        public IActionResult Edit(Subscriber_File subscriber)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(subscriber);
+            }
+
+            _context.subscriber.Update(subscriber);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
 
         [HttpGet]
         public JsonResult getSubscriber([FromQuery] string suscode)
