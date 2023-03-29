@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Water_Bill.Helpers
 {
-    public class PageList<T>:List<T>
+    public class PageList<T> : List<T>
     {
         public int CurrentPage { get; set; }
 
@@ -14,21 +14,25 @@ namespace Water_Bill.Helpers
 
         public int TotalCount { get; set; }
 
-        public PageList(IEnumerable<T> items, int pageNumber, int pageSize, int count )
+        public PageList(IEnumerable<T> items, int pageNumber, int pageSize, int count)
         {
             AddRange(items);
             CurrentPage = pageNumber;
             PageSize = pageSize;
             TotalCount = count;
-            TotalPage = (int) Math.Ceiling(TotalCount / (double) pageSize);
+            TotalPage = (int)Math.Ceiling(TotalCount / (double)pageSize);
         }
 
         public static PageList<T> GetPage(IEnumerable<T> source, int pageNum, int pageSize)
         {
             var count = source.Count();
-            var items = source.Skip( (pageNum - 1) * pageSize).Take(pageSize);
+            var items = source.Skip((pageNum - 1) * pageSize).Take(pageSize);
 
             return new PageList<T>(items, pageNum, pageSize, count);
         }
+
+
     }
+
+
 }

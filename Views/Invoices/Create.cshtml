@@ -87,13 +87,13 @@
 
             <div class="form-group">
                 <label> قيمه رسوم الخدمه</label>
-                <input class="form-control" asp-for="Invoices_Service_Fee" id="fee" min="0" oninput="validity.valid||(value='0')" ; value="0" onkeypress="return isNumberKey(event)" type="text" onClick="this.select();">
+                <input class="form-control" asp-for="Invoices_Service_Fee" id="fee" min="0" oninput="validity.valid||(value='0')" ; value="0" onkeypress="return isNumberKey(event)" type="number" onClick="this.select();">
                 <span asp-validation-for="Invoices_Service_Fee" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label>  نسبه الضريبه  <span class="text-danger"> % </span> </label>
-                <input class="form-control" asp-for="Invoices_Tax_Rate" id="tax" min="0" oninput="validity.valid||(value='0')" ; value="0" onkeypress="return isNumberKey(event)" type="text" onClick="this.select();" placeholder="The Number in %">
+                <input class="form-control" asp-for="Invoices_Tax_Rate" id="tax" min="0" oninput="validity.valid||(value='0')" ; value="0" onkeypress="return isNumberKey(event)" type="number" onClick="this.select();" placeholder="The Number in %">
                 <span asp-validation-for="Invoices_Tax_Rate" class="text-danger"></span>
             </div>
 
